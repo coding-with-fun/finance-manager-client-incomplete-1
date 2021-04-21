@@ -4,6 +4,14 @@
 
 @import '~bootstrap/scss/bootstrap';
 
+a {
+    color: inherit !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .dark_theme {
     .MuiButton-containedPrimary {
         border: 1px solid var(--white) !important;

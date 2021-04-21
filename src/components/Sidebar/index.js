@@ -14,12 +14,14 @@ import {
 import { Home as HomeIcon, Settings as SettingsIcon } from '@material-ui/icons';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const commonListIcons = [
     {
         icon: <HomeIcon />,
         name: 'Home',
         value: 'home',
+        route: '/',
     },
 ];
 const unauthenticatedListItems = [];
@@ -28,6 +30,7 @@ const authenticatedListItems = [
         icon: <SettingsIcon />,
         name: 'Settings',
         value: 'settings',
+        route: '/settings',
     },
 ];
 
@@ -40,16 +43,18 @@ const SideBar = ({ user, isSideBarOpen, handleSideBar }) => {
         <div>
             <Drawer anchor="left" open={isSideBarOpen} onClose={() => handleSideBar(false)}>
                 <div
-                    className="sidebar_list"
+                    className="sidebar_list dark_theme"
                     role="presentation"
                     onClick={() => handleSideBar(false)}
                 >
                     <List>
                         {sideBarItems.map(item => (
-                            <ListItem button key={item.value}>
-                                <ListItemIcon>{item.icon}</ListItemIcon>
-                                <ListItemText primary={item.name} />
-                            </ListItem>
+                            <Link to={item.route} key={item.value}>
+                                <ListItem button>
+                                    <ListItemIcon>{item.icon}</ListItemIcon>
+                                    <ListItemText primary={item.name} />
+                                </ListItem>
+                            </Link>
                         ))}
                     </List>
 
@@ -57,19 +62,25 @@ const SideBar = ({ user, isSideBarOpen, handleSideBar }) => {
 
                     {user.isAuthenticated ? (
                         <div className="sidebar_button_container">
-                            <Button variant="outlined" color="primary" disableElevation>
-                                Sign Out
-                            </Button>
+                            <Link to="/">
+                                <Button variant="outlined" color="primary" disableElevation>
+                                    Sign Out
+                                </Button>
+                            </Link>
                         </div>
                     ) : (
                         <div className="sidebar_button_container">
-                            <Button variant="contained" color="primary" disableElevation>
-                                Sign In
-                            </Button>
+                            <Link to="/signin">
+                                <Button variant="contained" color="primary" disableElevation>
+                                    Sign In
+                                </Button>
+                            </Link>
 
-                            <Button variant="outlined" color="primary">
-                                Sign Up
-                            </Button>
+                            <Link to="/signup">
+                                <Button variant="outlined" color="primary">
+                                    Sign Up
+                                </Button>
+                            </Link>
                         </div>
                     )}
                 </div>

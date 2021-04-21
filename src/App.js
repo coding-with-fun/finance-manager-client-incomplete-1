@@ -3,14 +3,12 @@
  */
 
 import React from 'react';
-import Home from './components/Home';
-import Topbar from './components/Topbar';
+import WrappedRouter from './routes/WrappedRouter';
 
 const App = () => {
     return (
         <div className="dark_theme main_container">
-            <Topbar />
-            <Home />
+            <WrappedRouter />
         </div>
     );
 };

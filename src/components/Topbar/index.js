@@ -6,6 +6,7 @@ import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@materi
 import { AccountCircle, Menu as MenuIcon } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SideBar from '../Sidebar';
 
 const TopBar = ({ user }) => {
@@ -21,7 +22,6 @@ const TopBar = ({ user }) => {
         setIsSideBarOpen(flag);
     };
 
-    console.log(user);
     return (
         <div className="topbar__container">
             <AppBar position="static">
@@ -37,7 +37,7 @@ const TopBar = ({ user }) => {
                     </IconButton>
 
                     <Typography variant="h6" className="topbar_header">
-                        Finance Manager
+                        <Link to="/">Finance Manager</Link>
                     </Typography>
 
                     {user.isAuthenticated && (
