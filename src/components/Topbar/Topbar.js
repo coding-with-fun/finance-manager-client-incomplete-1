@@ -2,12 +2,23 @@
  * @author Harsh Patel @harsh2124
  */
 
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
 import { connect } from 'react-redux';
 
 const TopBar = ({ user }) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleMenu = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     console.log(user);
     return (
         <div className="topbar__container">
@@ -23,10 +34,41 @@ const TopBar = ({ user }) => {
                     </IconButton>
 
                     <Typography variant="h6" className="topbar_header">
-                        News
+                        Finance Manager
                     </Typography>
 
-                    <Button color="inherit">Login</Button>
+                    {user.isAuthenticated && (
+                        <div>
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                                className="topbar_icon"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>Sign Out</MenuItem>
+                            </Menu>
+                        </div>
+                    )}
                 </Toolbar>
             </AppBar>
         </div>
