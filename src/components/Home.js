@@ -3,14 +3,14 @@
  */
 
 import React, { Fragment } from 'react';
-import Home from './components/Home';
+import TopBar from './Topbar/Topbar';
 
-const App = () => {
+const Home = () => {
     return (
         <Fragment>
-            <Home />
+            <TopBar />
         </Fragment>
     );
 };
 
-export default App;
+export default Home;
