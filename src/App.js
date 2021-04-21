@@ -2,14 +2,16 @@
  * @author Harsh Patel @harsh2124
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import Home from './components/Home';
+import Topbar from './components/Topbar';
 
 const App = () => {
     return (
-        <Fragment>
+        <div className="dark_theme main_container">
+            <Topbar />
             <Home />
-        </Fragment>
+        </div>
     );
 };
 
