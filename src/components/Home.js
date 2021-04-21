@@ -3,7 +3,7 @@
  */
 
 import React, { Fragment } from 'react';
-import TopBar from './Topbar/Topbar';
+import TopBar from './Topbar';
 
 const Home = () => {
     return (

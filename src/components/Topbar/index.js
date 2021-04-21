@@ -5,20 +5,23 @@
 import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import SideBar from '../Sidebar';
 
 const TopBar = ({ user }) => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
     const handleMenu = event => {
-        setAnchorEl(event.currentTarget);
+        setAnchorEl(event?.currentTarget || null);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleSideBar = flag => {
+        setIsSideBarOpen(flag);
     };
+
     console.log(user);
     return (
         <div className="topbar__container">
@@ -29,6 +32,7 @@ const TopBar = ({ user }) => {
                         color="inherit"
                         aria-label="menu"
                         className="topbar_menu_icon"
+                        onClick={() => handleSideBar(true)}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -37,7 +41,7 @@ const TopBar = ({ user }) => {
                         Finance Manager
                     </Typography>
 
-                    {user.isAuthenticated && (
+                    {!user.isAuthenticated && (
                         <div>
                             <IconButton
                                 aria-label="account of current user"
@@ -62,15 +66,17 @@ const TopBar = ({ user }) => {
                                     horizontal: 'right',
                                 }}
                                 open={open}
-                                onClose={handleClose}
+                                onClose={() => handleMenu()}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>Sign Out</MenuItem>
+                                <MenuItem onClick={() => handleMenu()}>Profile</MenuItem>
+                                <MenuItem onClick={() => handleMenu()}>Sign Out</MenuItem>
                             </Menu>
                         </div>
                     )}
                 </Toolbar>
             </AppBar>
+
+            <SideBar isSideBarOpen={isSideBarOpen} handleSideBar={handleSideBar} />
         </div>
     );
 };
