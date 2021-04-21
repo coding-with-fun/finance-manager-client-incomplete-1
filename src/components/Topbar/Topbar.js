@@ -5,8 +5,10 @@
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
+import { connect } from 'react-redux';
 
-const TopBar = () => {
+const TopBar = ({ user }) => {
+    console.log(user);
     return (
         <div className="topbar__container">
             <AppBar position="static">
@@ -31,4 +33,8 @@ const TopBar = () => {
     );
 };
 
-export default TopBar;
+export default connect(state => {
+    return {
+        user: state.user,
+    };
+})(TopBar);
