@@ -1,3 +1,7 @@
+/**
+ * @author Harsh Patel @harsh2124
+ */
+
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';

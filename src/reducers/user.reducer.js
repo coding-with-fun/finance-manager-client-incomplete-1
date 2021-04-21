@@ -1,3 +1,7 @@
+/**
+ * @author Harsh Patel @harsh2124
+ */
+
 const initialState = {
     loading: false,
     isAuthenticated: false,
