@@ -2,17 +2,40 @@
  * @author Harsh Patel @harsh2124
  */
 
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import {
+    Button,
+    Divider,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+} from '@material-ui/core';
+import { Home as HomeIcon, Settings as SettingsIcon } from '@material-ui/icons';
 import React from 'react';
+import { connect } from 'react-redux';
 
-const SideBar = ({ isSideBarOpen, handleSideBar }) => {
+const commonListIcons = [
+    {
+        icon: <HomeIcon />,
+        name: 'Home',
+        value: 'home',
+    },
+];
+const unauthenticatedListItems = [];
+const authenticatedListItems = [
+    {
+        icon: <SettingsIcon />,
+        name: 'Settings',
+        value: 'settings',
+    },
+];
+
+const SideBar = ({ user, isSideBarOpen, handleSideBar }) => {
+    const sideBarItems = user.isAuthenticated
+        ? [...commonListIcons, ...authenticatedListItems]
+        : [...commonListIcons, ...unauthenticatedListItems];
+
     return (
         <div>
             <Drawer anchor="left" open={isSideBarOpen} onClose={() => handleSideBar(false)}>
@@ -22,30 +45,41 @@ const SideBar = ({ isSideBarOpen, handleSideBar }) => {
                     onClick={() => handleSideBar(false)}
                 >
                     <List>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
+                        {sideBarItems.map(item => (
+                            <ListItem button key={item.value}>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.name} />
                             </ListItem>
                         ))}
                     </List>
+
                     <Divider />
-                    <List>
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
-                    </List>
+
+                    {user.isAuthenticated ? (
+                        <div className="sidebar_button_container">
+                            <Button variant="outlined" color="primary" disableElevation>
+                                Sign Out
+                            </Button>
+                        </div>
+                    ) : (
+                        <div className="sidebar_button_container">
+                            <Button variant="contained" color="primary" disableElevation>
+                                Sign In
+                            </Button>
+
+                            <Button variant="outlined" color="primary">
+                                Sign Up
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </Drawer>
         </div>
     );
 };
 
-export default SideBar;
+export default connect(state => {
+    return {
+        user: state.user,
+    };
+})(SideBar);

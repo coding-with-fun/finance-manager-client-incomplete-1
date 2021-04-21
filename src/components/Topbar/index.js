@@ -3,8 +3,7 @@
  */
 
 import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AccountCircle, Menu as MenuIcon } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import SideBar from '../Sidebar';
@@ -41,7 +40,7 @@ const TopBar = ({ user }) => {
                         Finance Manager
                     </Typography>
 
-                    {!user.isAuthenticated && (
+                    {user.isAuthenticated && (
                         <div>
                             <IconButton
                                 aria-label="account of current user"

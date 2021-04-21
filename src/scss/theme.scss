@@ -3,3 +3,18 @@
  */
 
 @import '~bootstrap/scss/bootstrap';
+
+.MuiButton-containedPrimary {
+    border: 1px solid var(--white) !important;
+}
+
+.MuiButton-containedPrimary:hover {
+    background-color: var(--white) !important;
+    color: var(--dark) !important;
+    border: 1px solid rgba(52, 58, 64, 0.5) !important;
+}
+
+.MuiButton-outlinedPrimary:hover {
+    background-color: var(--dark) !important;
+    color: var(--white) !important;
+}
