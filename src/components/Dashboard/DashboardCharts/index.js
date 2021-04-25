@@ -6,7 +6,7 @@ import Income from './Income';
 const Charts = () => {
     return (
         <Container>
-            <Row>
+            <Row className="chart-dashboard-container">
                 <Expense />
 
                 <Income />
