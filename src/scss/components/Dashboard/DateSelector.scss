@@ -1,0 +1,14 @@
+.dashboard-date-selector {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+
+    .start-date,
+    .end-date {
+        width: 82px;
+    }
+
+    .start-date {
+        margin-right: 20px;
+    }
+}

@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.chart-dashboard-container {
+    font-family: 'Poppins', sans-serif !important;
+
+    .expense,
+    .income {
+        .MuiPaper-outlined {
+            padding: 15px 0;
+        }
+
+        p {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard-amount {
+            font-size: 45px;
+        }
+
+        .dashboard-difference {
+            color: var(--success);
+
+            display: flex;
+            justify-content: center;
+
+            span {
+                margin-top: -2px;
+                margin-right: 3px;
+            }
+        }
+
+        .inverted {
+            color: var(--danger);
+
+            svg {
+                transform: rotateX(180deg);
+            }
+        }
+    }
+}
