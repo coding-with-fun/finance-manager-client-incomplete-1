@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import AuthForm from '../components/AuthForm';
 import Budget from '../components/Budget';
 import Dashboard from '../components/Dashboard';
+import Transactions from '../components/Dashboard/Transactions';
 import Home from '../components/Home';
 import Investments from '../components/Investments';
 import Settings from '../components/Settings';
 import Topbar from '../components/Topbar';
-import Transactions from '../components/Transactions';
 
 const WrappedRouter = ({ user }) => {
     return (
