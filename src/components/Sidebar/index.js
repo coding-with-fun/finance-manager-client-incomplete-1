@@ -11,7 +11,13 @@ import {
     ListItemIcon,
     ListItemText,
 } from '@material-ui/core';
-import { Home as HomeIcon, Settings as SettingsIcon } from '@material-ui/icons';
+import {
+    AccountBalance as BudgetIcon,
+    AccountBalanceWallet as TransactionsIcon,
+    AttachMoney as InvestmentsIcon,
+    Home as HomeIcon,
+    Settings as SettingsIcon,
+} from '@material-ui/icons';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,6 +32,24 @@ const commonListIcons = [
 ];
 const unauthenticatedListItems = [];
 const authenticatedListItems = [
+    {
+        icon: <TransactionsIcon />,
+        name: 'Transactions',
+        value: 'transactions',
+        route: '/transactions',
+    },
+    {
+        icon: <BudgetIcon />,
+        name: 'Budget',
+        value: 'budget',
+        route: '/budget',
+    },
+    {
+        icon: <InvestmentsIcon />,
+        name: 'Investments',
+        value: 'investments',
+        route: '/investments',
+    },
     {
         icon: <SettingsIcon />,
         name: 'Settings',
